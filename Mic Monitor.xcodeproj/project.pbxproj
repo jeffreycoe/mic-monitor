@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FB4A3CCD1DBC0BF40016658E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CCC1DBC0BF40016658E /* AppDelegate.swift */; };
+		FB4A3CCF1DBC0BF40016658E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CCE1DBC0BF40016658E /* ViewController.swift */; };
+		FB4A3CD11DBC0BF40016658E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB4A3CD01DBC0BF40016658E /* Assets.xcassets */; };
+		FB4A3CD41DBC0BF40016658E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4A3CD21DBC0BF40016658E /* Main.storyboard */; };
+		FB4A3CDF1DBC0BF40016658E /* Mic_MonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CDE1DBC0BF40016658E /* Mic_MonitorTests.swift */; };
+		FB4A3CEA1DBC0BF40016658E /* Mic_MonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FB4A3CDB1DBC0BF40016658E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB4A3CC11DBC0BF40016658E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB4A3CC81DBC0BF40016658E;
+			remoteInfo = "Mic Monitor";
+		};
+		FB4A3CE61DBC0BF40016658E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FB4A3CC11DBC0BF40016658E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FB4A3CC81DBC0BF40016658E;
+			remoteInfo = "Mic Monitor";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		FB4A3CC91DBC0BF40016658E /* Mic Monitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mic Monitor.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4A3CCC1DBC0BF40016658E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FB4A3CCE1DBC0BF40016658E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FB4A3CD01DBC0BF40016658E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FB4A3CD31DBC0BF40016658E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FB4A3CD51DBC0BF40016658E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB4A3CDA1DBC0BF40016658E /* Mic MonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mic MonitorTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4A3CDE1DBC0BF40016658E /* Mic_MonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mic_MonitorTests.swift; sourceTree = "<group>"; };
+		FB4A3CE01DBC0BF40016658E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FB4A3CE51DBC0BF40016658E /* Mic MonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mic MonitorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mic_MonitorUITests.swift; sourceTree = "<group>"; };
+		FB4A3CEB1DBC0BF40016658E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FB4A3CC61DBC0BF40016658E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4A3CD71DBC0BF40016658E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4A3CE21DBC0BF40016658E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FB4A3CC01DBC0BF40016658E = {
+			isa = PBXGroup;
+			children = (
+				FB4A3CCB1DBC0BF40016658E /* Mic Monitor */,
+				FB4A3CDD1DBC0BF40016658E /* Mic MonitorTests */,
+				FB4A3CE81DBC0BF40016658E /* Mic MonitorUITests */,
+				FB4A3CCA1DBC0BF40016658E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FB4A3CCA1DBC0BF40016658E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FB4A3CC91DBC0BF40016658E /* Mic Monitor.app */,
+				FB4A3CDA1DBC0BF40016658E /* Mic MonitorTests.xctest */,
+				FB4A3CE51DBC0BF40016658E /* Mic MonitorUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FB4A3CCB1DBC0BF40016658E /* Mic Monitor */ = {
+			isa = PBXGroup;
+			children = (
+				FB4A3CCC1DBC0BF40016658E /* AppDelegate.swift */,
+				FB4A3CCE1DBC0BF40016658E /* ViewController.swift */,
+				FB4A3CD01DBC0BF40016658E /* Assets.xcassets */,
+				FB4A3CD21DBC0BF40016658E /* Main.storyboard */,
+				FB4A3CD51DBC0BF40016658E /* Info.plist */,
+			);
+			path = "Mic Monitor";
+			sourceTree = "<group>";
+		};
+		FB4A3CDD1DBC0BF40016658E /* Mic MonitorTests */ = {
+			isa = PBXGroup;
+			children = (
+				FB4A3CDE1DBC0BF40016658E /* Mic_MonitorTests.swift */,
+				FB4A3CE01DBC0BF40016658E /* Info.plist */,
+			);
+			path = "Mic MonitorTests";
+			sourceTree = "<group>";
+		};
+		FB4A3CE81DBC0BF40016658E /* Mic MonitorUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */,
+				FB4A3CEB1DBC0BF40016658E /* Info.plist */,
+			);
+			path = "Mic MonitorUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FB4A3CC81DBC0BF40016658E /* Mic Monitor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB4A3CEE1DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic Monitor" */;
+			buildPhases = (
+				FB4A3CC51DBC0BF40016658E /* Sources */,
+				FB4A3CC61DBC0BF40016658E /* Frameworks */,
+				FB4A3CC71DBC0BF40016658E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Mic Monitor";
+			productName = "Mic Monitor";
+			productReference = FB4A3CC91DBC0BF40016658E /* Mic Monitor.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FB4A3CD91DBC0BF40016658E /* Mic MonitorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB4A3CF11DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic MonitorTests" */;
+			buildPhases = (
+				FB4A3CD61DBC0BF40016658E /* Sources */,
+				FB4A3CD71DBC0BF40016658E /* Frameworks */,
+				FB4A3CD81DBC0BF40016658E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB4A3CDC1DBC0BF40016658E /* PBXTargetDependency */,
+			);
+			name = "Mic MonitorTests";
+			productName = "Mic MonitorTests";
+			productReference = FB4A3CDA1DBC0BF40016658E /* Mic MonitorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		FB4A3CE41DBC0BF40016658E /* Mic MonitorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FB4A3CF41DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic MonitorUITests" */;
+			buildPhases = (
+				FB4A3CE11DBC0BF40016658E /* Sources */,
+				FB4A3CE21DBC0BF40016658E /* Frameworks */,
+				FB4A3CE31DBC0BF40016658E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FB4A3CE71DBC0BF40016658E /* PBXTargetDependency */,
+			);
+			name = "Mic MonitorUITests";
+			productName = "Mic MonitorUITests";
+			productReference = FB4A3CE51DBC0BF40016658E /* Mic MonitorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FB4A3CC11DBC0BF40016658E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Jeffrey Coe";
+				TargetAttributes = {
+					FB4A3CC81DBC0BF40016658E = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					FB4A3CD91DBC0BF40016658E = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FB4A3CC81DBC0BF40016658E;
+					};
+					FB4A3CE41DBC0BF40016658E = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = FB4A3CC81DBC0BF40016658E;
+					};
+				};
+			};
+			buildConfigurationList = FB4A3CC41DBC0BF40016658E /* Build configuration list for PBXProject "Mic Monitor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FB4A3CC01DBC0BF40016658E;
+			productRefGroup = FB4A3CCA1DBC0BF40016658E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FB4A3CC81DBC0BF40016658E /* Mic Monitor */,
+				FB4A3CD91DBC0BF40016658E /* Mic MonitorTests */,
+				FB4A3CE41DBC0BF40016658E /* Mic MonitorUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FB4A3CC71DBC0BF40016658E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB4A3CD11DBC0BF40016658E /* Assets.xcassets in Resources */,
+				FB4A3CD41DBC0BF40016658E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4A3CD81DBC0BF40016658E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4A3CE31DBC0BF40016658E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FB4A3CC51DBC0BF40016658E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB4A3CCF1DBC0BF40016658E /* ViewController.swift in Sources */,
+				FB4A3CCD1DBC0BF40016658E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4A3CD61DBC0BF40016658E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB4A3CDF1DBC0BF40016658E /* Mic_MonitorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB4A3CE11DBC0BF40016658E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FB4A3CEA1DBC0BF40016658E /* Mic_MonitorUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FB4A3CDC1DBC0BF40016658E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB4A3CC81DBC0BF40016658E /* Mic Monitor */;
+			targetProxy = FB4A3CDB1DBC0BF40016658E /* PBXContainerItemProxy */;
+		};
+		FB4A3CE71DBC0BF40016658E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FB4A3CC81DBC0BF40016658E /* Mic Monitor */;
+			targetProxy = FB4A3CE61DBC0BF40016658E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		FB4A3CD21DBC0BF40016658E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FB4A3CD31DBC0BF40016658E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FB4A3CEC1DBC0BF40016658E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FB4A3CED1DBC0BF40016658E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		FB4A3CEF1DBC0BF40016658E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Mic Monitor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffcoe.Mic-Monitor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		FB4A3CF01DBC0BF40016658E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Mic Monitor/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffcoe.Mic-Monitor";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		FB4A3CF21DBC0BF40016658E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Mic MonitorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffcoe.Mic-MonitorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mic Monitor.app/Contents/MacOS/Mic Monitor";
+			};
+			name = Debug;
+		};
+		FB4A3CF31DBC0BF40016658E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Mic MonitorTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffcoe.Mic-MonitorTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Mic Monitor.app/Contents/MacOS/Mic Monitor";
+			};
+			name = Release;
+		};
+		FB4A3CF51DBC0BF40016658E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Mic MonitorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffcoe.Mic-MonitorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Mic Monitor";
+			};
+			name = Debug;
+		};
+		FB4A3CF61DBC0BF40016658E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Mic MonitorUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jeffcoe.Mic-MonitorUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = "Mic Monitor";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FB4A3CC41DBC0BF40016658E /* Build configuration list for PBXProject "Mic Monitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB4A3CEC1DBC0BF40016658E /* Debug */,
+				FB4A3CED1DBC0BF40016658E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FB4A3CEE1DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic Monitor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB4A3CEF1DBC0BF40016658E /* Debug */,
+				FB4A3CF01DBC0BF40016658E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FB4A3CF11DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic MonitorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB4A3CF21DBC0BF40016658E /* Debug */,
+				FB4A3CF31DBC0BF40016658E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		FB4A3CF41DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic MonitorUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FB4A3CF51DBC0BF40016658E /* Debug */,
+				FB4A3CF61DBC0BF40016658E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FB4A3CC11DBC0BF40016658E /* Project object */;
+}
