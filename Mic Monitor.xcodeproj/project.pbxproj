@@ -13,7 +13,7 @@
 		FB4A3CD41DBC0BF40016658E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4A3CD21DBC0BF40016658E /* Main.storyboard */; };
 		FB4A3CDF1DBC0BF40016658E /* Mic_MonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CDE1DBC0BF40016658E /* Mic_MonitorTests.swift */; };
 		FB4A3CEA1DBC0BF40016658E /* Mic_MonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */; };
-		FBA05D991DBC148B00D350E2 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA05D981DBC148B00D350E2 /* AudioController.swift */; };
+		FBD4063A1DC5004300A885F8 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBD406391DC5004300A885F8 /* AudioController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +46,8 @@
 		FB4A3CE51DBC0BF40016658E /* Mic MonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mic MonitorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mic_MonitorUITests.swift; sourceTree = "<group>"; };
 		FB4A3CEB1DBC0BF40016658E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FBA05D981DBC148B00D350E2 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioController.swift; path = ../AudioController.swift; sourceTree = "<group>"; };
+		FBD406391DC5004300A885F8 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioController.swift; sourceTree = "<group>"; usesTabs = 0; };
+		FBD4063E1DC5020500A885F8 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +82,7 @@
 				FB4A3CDD1DBC0BF40016658E /* Mic MonitorTests */,
 				FB4A3CE81DBC0BF40016658E /* Mic MonitorUITests */,
 				FB4A3CCA1DBC0BF40016658E /* Products */,
+				FBD4063D1DC5020500A885F8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,11 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				FB4A3CCC1DBC0BF40016658E /* AppDelegate.swift */,
-				FBA05D981DBC148B00D350E2 /* AudioController.swift */,
 				FB4A3CCE1DBC0BF40016658E /* ViewController.swift */,
 				FB4A3CD01DBC0BF40016658E /* Assets.xcassets */,
 				FB4A3CD21DBC0BF40016658E /* Main.storyboard */,
 				FB4A3CD51DBC0BF40016658E /* Info.plist */,
+				FBD406391DC5004300A885F8 /* AudioController.swift */,
 			);
 			path = "Mic Monitor";
 			sourceTree = "<group>";
@@ -123,6 +125,14 @@
 				FB4A3CEB1DBC0BF40016658E /* Info.plist */,
 			);
 			path = "Mic MonitorUITests";
+			sourceTree = "<group>";
+		};
+		FBD4063D1DC5020500A885F8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FBD4063E1DC5020500A885F8 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,7 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB4A3CCF1DBC0BF40016658E /* ViewController.swift in Sources */,
-				FBA05D991DBC148B00D350E2 /* AudioController.swift in Sources */,
+				FBD4063A1DC5004300A885F8 /* AudioController.swift in Sources */,
 				FB4A3CCD1DBC0BF40016658E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

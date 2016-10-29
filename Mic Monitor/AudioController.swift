@@ -9,9 +9,22 @@
 import Foundation
 import AVFoundation
 
-func isMicInUse() -> Bool {
-    var micInUse = false
-    var session = AVAudioSession.sharedInstance()
+class AudioController {
     
-    return micInUse
+    init() {
+        
+    }
+    
+    public func getAudioDevices() -> Array<AVCaptureDevice> {
+        var audioDevices: Array<AVCaptureDevice> = Array()
+        let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeAudio)
+        
+        for device in devices! {
+            if let device = device as? AVCaptureDevice {
+                audioDevices.append(device)
+            }
+        }
+        
+        return audioDevices
+    }
 }

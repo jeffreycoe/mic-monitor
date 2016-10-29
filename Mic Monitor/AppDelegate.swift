@@ -17,13 +17,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var micStatusMenuItem : NSMenuItem = NSMenuItem(title: "Mic Status: Off", action: nil, keyEquivalent: "")
     var mic_on_image = NSImage(named: "mic_on")
     var mic_off_image = NSImage(named: "mic_off")
-    
+    var audioController = AudioController()
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         buildStatusItemMenu()
 
         statusBarItem = statusBar.statusItem(withLength: NSSquareStatusItemLength)
-        statusBarItem.image = mic_off_image
         statusBarItem.menu = itemMenu
+        statusBarItem.image = mic_off_image
         statusBarItem.highlightMode = true
     }
 
