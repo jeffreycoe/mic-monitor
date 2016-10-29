@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		FB4A3CD41DBC0BF40016658E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB4A3CD21DBC0BF40016658E /* Main.storyboard */; };
 		FB4A3CDF1DBC0BF40016658E /* Mic_MonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CDE1DBC0BF40016658E /* Mic_MonitorTests.swift */; };
 		FB4A3CEA1DBC0BF40016658E /* Mic_MonitorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */; };
+		FBA05D991DBC148B00D350E2 /* AudioController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA05D981DBC148B00D350E2 /* AudioController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		FB4A3CE51DBC0BF40016658E /* Mic MonitorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mic MonitorUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB4A3CE91DBC0BF40016658E /* Mic_MonitorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mic_MonitorUITests.swift; sourceTree = "<group>"; };
 		FB4A3CEB1DBC0BF40016658E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FBA05D981DBC148B00D350E2 /* AudioController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AudioController.swift; path = ../AudioController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				FB4A3CCC1DBC0BF40016658E /* AppDelegate.swift */,
+				FBA05D981DBC148B00D350E2 /* AudioController.swift */,
 				FB4A3CCE1DBC0BF40016658E /* ViewController.swift */,
 				FB4A3CD01DBC0BF40016658E /* Assets.xcassets */,
 				FB4A3CD21DBC0BF40016658E /* Main.storyboard */,
@@ -205,7 +208,7 @@
 				};
 			};
 			buildConfigurationList = FB4A3CC41DBC0BF40016658E /* Build configuration list for PBXProject "Mic Monitor" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -256,6 +259,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB4A3CCF1DBC0BF40016658E /* ViewController.swift in Sources */,
+				FBA05D991DBC148B00D350E2 /* AudioController.swift in Sources */,
 				FB4A3CCD1DBC0BF40016658E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -496,6 +500,7 @@
 				FB4A3CF01DBC0BF40016658E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB4A3CF11DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic MonitorTests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +509,7 @@
 				FB4A3CF31DBC0BF40016658E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FB4A3CF41DBC0BF40016658E /* Build configuration list for PBXNativeTarget "Mic MonitorUITests" */ = {
 			isa = XCConfigurationList;
@@ -512,6 +518,7 @@
 				FB4A3CF61DBC0BF40016658E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
