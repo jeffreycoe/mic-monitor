@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import CoreAudio
+import AudioToolbox
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -15,8 +17,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var itemMenu : NSMenu = NSMenu()
     var quitMenuItem : NSMenuItem = NSMenuItem(title: "Exit Mic Monitor", action: #selector(AppDelegate.quitApplication), keyEquivalent: "")
     var micStatusMenuItem : NSMenuItem = NSMenuItem(title: "Mic Status: Off", action: nil, keyEquivalent: "")
-    var mic_on_image = NSImage(named: "mic_on")
-    var mic_off_image = NSImage(named: "mic_off")
+    var micOnImage = NSImage(named: "mic_on")
+    var micOffImage = NSImage(named: "mic_off")
     var audioController = AudioController()
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -24,12 +26,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         statusBarItem = statusBar.statusItem(withLength: NSSquareStatusItemLength)
         statusBarItem.menu = itemMenu
-        statusBarItem.image = mic_off_image
+        statusBarItem.image = micOffImage
         statusBarItem.highlightMode = true
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+        
     }
  
     func buildStatusItemMenu() {
