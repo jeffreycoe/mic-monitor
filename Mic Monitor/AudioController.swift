@@ -15,6 +15,16 @@ class AudioController {
         
     }
     
+    public func addAudioDeviceInUseSomewhereListener(device: AudioObjectID, proc: @escaping AudioObjectPropertyListenerProc) {
+        var address: AudioObjectPropertyAddress = AudioObjectPropertyAddress()
+        var inUseSomewhere = UInt32(0)
+        address.mSelector = kAudioDevicePropertyDeviceIsRunningSomewhere
+        address.mScope = kAudioObjectPropertyScopeGlobal
+        address.mElement = kAudioObjectPropertyElementMaster
+        
+        try handleResult(result: AudioObjectAddPropertyListener(device, &address, proc, &inUseSomewhere))
+    }
+    
     public func isAudioDeviceInUseSomewhere(device: AudioObjectID) -> Bool {
         var inUseSomewhere = UInt32(0)
         var size = UInt32(MemoryLayout<UInt32>.size)
@@ -86,7 +96,7 @@ class AudioController {
         
         AudioObjectGetPropertyDataSize(device, &address, 0, nil, &size)
         
-        var bufferList = AudioBufferList.allocate(maximumBuffers: Int(size))
+        let bufferList = AudioBufferList.allocate(maximumBuffers: Int(size))
         AudioObjectGetPropertyData(device, &address, 0, nil, &size, bufferList.unsafeMutablePointer)
         let numOfBuffers = Int(bufferList.unsafeMutablePointer.pointee.mNumberBuffers)
         
