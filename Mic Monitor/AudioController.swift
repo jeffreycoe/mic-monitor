@@ -126,10 +126,11 @@ class AudioController {
         address.mElement = 0
         
         do {
-            AudioObjectGetPropertyDataSize(device, &address, 0, nil, &size)
+            try(handleResult(result: AudioObjectGetPropertyDataSize(device, &address, 0, nil, &size)))
             
             let bufferList = AudioBufferList.allocate(maximumBuffers: Int(size))
-            AudioObjectGetPropertyData(device, &address, 0, nil, &size, bufferList.unsafeMutablePointer)
+            try(handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, bufferList.unsafeMutablePointer)))
+            
             let numOfBuffers = Int(bufferList.unsafeMutablePointer.pointee.mNumberBuffers)
             
             for i in 0 ..< numOfBuffers {
