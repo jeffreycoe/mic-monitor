@@ -10,6 +10,10 @@ import Foundation
 import AudioToolbox
 
 class AudioController {
+    enum AudioControllerError: Error {
+        case AudioHardwareBadDevice
+        case AudioControllerUnknownError
+    }
     
     init() {
         
@@ -22,7 +26,13 @@ class AudioController {
         address.mScope = kAudioObjectPropertyScopeGlobal
         address.mElement = kAudioObjectPropertyElementMaster
         
-        try handleResult(result: AudioObjectAddPropertyListener(device, &address, proc, &inUseSomewhere))
+        do {
+            try handleResult(result: AudioObjectAddPropertyListener(device, &address, proc, &inUseSomewhere))
+        } catch AudioControllerError.AudioHardwareBadDevice {
+            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
+        } catch {
+            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        }
     }
     
     public func isAudioDeviceInUseSomewhere(device: AudioObjectID) -> Bool {
@@ -33,7 +43,13 @@ class AudioController {
         address.mScope = kAudioObjectPropertyScopeGlobal
         address.mElement = kAudioObjectPropertyElementMaster
         
-        try handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, &inUseSomewhere))
+        do {
+            try handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, &inUseSomewhere))
+        } catch AudioControllerError.AudioHardwareBadDevice {
+            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
+        } catch {
+            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        }
         
         if inUseSomewhere == 1 {
             return true
@@ -50,23 +66,38 @@ class AudioController {
         address.mScope = kAudioObjectPropertyScopeGlobal
         address.mElement = kAudioObjectPropertyElementMaster
         
-        try handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, &deviceName))
-        
+        do {
+            try handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, &deviceName))
+        } catch AudioControllerError.AudioHardwareBadDevice {
+            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
+        } catch {
+            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        }
+    
         return deviceName as String
     }
     
     public func getAudioDevices() -> [AudioDeviceID] {
         var size = UInt32(0)
+        var devices: [AudioDeviceID] = []
+        var numOfDevices: Int = 0
         var address: AudioObjectPropertyAddress = AudioObjectPropertyAddress()
         address.mSelector = kAudioHardwarePropertyDevices
         address.mScope = kAudioObjectPropertyScopeGlobal
         address.mElement = kAudioObjectPropertyElementMaster
         
-        try handleResult(result: AudioObjectGetPropertyDataSize(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size))
-        
-        let numOfDevices = Int(size) / MemoryLayout<AudioDeviceID>.size
-        var devices: [AudioDeviceID] = Array(repeating: AudioDeviceID(), count: numOfDevices)
-        try handleResult(result: AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &devices))
+        do {
+            try handleResult(result: AudioObjectGetPropertyDataSize(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size))
+            
+            numOfDevices = Int(size) / MemoryLayout<AudioDeviceID>.size
+            devices = Array(repeating: AudioDeviceID(), count: numOfDevices)
+            
+            try handleResult(result: AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &devices))
+        } catch AudioControllerError.AudioHardwareBadDevice {
+            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
+        } catch {
+            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        }
         
         return devices
     }
@@ -94,14 +125,20 @@ class AudioController {
         address.mScope = kAudioDevicePropertyScopeInput
         address.mElement = 0
         
-        AudioObjectGetPropertyDataSize(device, &address, 0, nil, &size)
-        
-        let bufferList = AudioBufferList.allocate(maximumBuffers: Int(size))
-        AudioObjectGetPropertyData(device, &address, 0, nil, &size, bufferList.unsafeMutablePointer)
-        let numOfBuffers = Int(bufferList.unsafeMutablePointer.pointee.mNumberBuffers)
-        
-        for i in 0 ..< numOfBuffers {
-            channels += Int(bufferList[i].mNumberChannels)
+        do {
+            AudioObjectGetPropertyDataSize(device, &address, 0, nil, &size)
+            
+            let bufferList = AudioBufferList.allocate(maximumBuffers: Int(size))
+            AudioObjectGetPropertyData(device, &address, 0, nil, &size, bufferList.unsafeMutablePointer)
+            let numOfBuffers = Int(bufferList.unsafeMutablePointer.pointee.mNumberBuffers)
+            
+            for i in 0 ..< numOfBuffers {
+                channels += Int(bufferList[i].mNumberChannels)
+            }
+        } catch AudioControllerError.AudioHardwareBadDevice {
+            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
+        } catch {
+            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
         }
         
         return channels
@@ -114,14 +151,37 @@ class AudioController {
         address.mSelector = kAudioHardwarePropertyDefaultInputDevice
         address.mScope = kAudioObjectPropertyScopeGlobal
         address.mElement = kAudioObjectPropertyElementMaster
-        try handleResult(result: AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &device))
+        
+        do {
+            try handleResult(result: AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &device))
+        } catch AudioControllerError.AudioHardwareBadDevice {
+            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
+        } catch {
+            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        }
         
         return device
     }
     
-    public func handleResult(result: OSStatus) {
+    public func handleResult(result: OSStatus) throws {
         if result != kAudioHardwareNoError {
-            NSError(domain: NSOSStatusErrorDomain, code: Int(result), userInfo: nil)
+            switch(result) {
+            case kAudioHardwareBadDeviceError:
+                throw AudioControllerError.AudioHardwareBadDevice
+            default:
+                throw AudioControllerError.AudioControllerUnknownError
+            }
+        }
+    }
+    
+    public func handleError(errorType: Error) {
+        switch(errorType) {
+        case AudioControllerError.AudioHardwareBadDevice:
+            NSLog("AudioController: Bad Device")
+        case AudioControllerError.AudioControllerUnknownError:
+            NSLog("AudioController: Unknown Error Occurred")
+        default:
+            NSLog("AudioController: Unknown Error Occurred")
         }
     }
 }
