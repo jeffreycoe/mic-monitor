@@ -11,10 +11,20 @@ import AudioToolbox
 
 class AudioController {
     enum AudioControllerError: Error {
+        case AudioHardwareNotRunning
+        case AudioHardwareUnspecifiedError
+        case AudioHardwareUnknownProperty
+        case AudioHardwareBadPropertySize
+        case AudioHardwareIllegalOperation
+        case AudioHardwareBadObject
         case AudioHardwareBadDevice
+        case AudioHardwareBadStream
+        case AudioHardwareUnsupportedOperation
+        case AudioDeviceUnsupportedFormat
+        case AudioDevicePermissionsError
         case AudioControllerUnknownError
     }
-    
+
     init() {
         
     }
@@ -28,10 +38,8 @@ class AudioController {
         
         do {
             try handleResult(result: AudioObjectAddPropertyListener(device, &address, proc, &inUseSomewhere))
-        } catch AudioControllerError.AudioHardwareBadDevice {
-            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
-        } catch {
-            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        } catch let e {
+            handleError(errorType: e)
         }
     }
     
@@ -45,10 +53,8 @@ class AudioController {
         
         do {
             try handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, &inUseSomewhere))
-        } catch AudioControllerError.AudioHardwareBadDevice {
-            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
-        } catch {
-            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        } catch let e {
+            handleError(errorType: e)
         }
         
         if inUseSomewhere == 1 {
@@ -68,10 +74,8 @@ class AudioController {
         
         do {
             try handleResult(result: AudioObjectGetPropertyData(device, &address, 0, nil, &size, &deviceName))
-        } catch AudioControllerError.AudioHardwareBadDevice {
-            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
-        } catch {
-            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        } catch let e {
+            handleError(errorType: e)
         }
     
         return deviceName as String
@@ -93,10 +97,8 @@ class AudioController {
             devices = Array(repeating: AudioDeviceID(), count: numOfDevices)
             
             try handleResult(result: AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &devices))
-        } catch AudioControllerError.AudioHardwareBadDevice {
-            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
-        } catch {
-            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        } catch let e {
+            handleError(errorType: e)
         }
         
         return devices
@@ -136,10 +138,8 @@ class AudioController {
             for i in 0 ..< numOfBuffers {
                 channels += Int(bufferList[i].mNumberChannels)
             }
-        } catch AudioControllerError.AudioHardwareBadDevice {
-            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
-        } catch {
-            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        } catch let e {
+            handleError(errorType: e)
         }
         
         return channels
@@ -155,10 +155,8 @@ class AudioController {
         
         do {
             try handleResult(result: AudioObjectGetPropertyData(AudioObjectID(kAudioObjectSystemObject), &address, 0, nil, &size, &device))
-        } catch AudioControllerError.AudioHardwareBadDevice {
-            handleError(errorType: AudioControllerError.AudioHardwareBadDevice)
-        } catch {
-            handleError(errorType: AudioControllerError.AudioControllerUnknownError)
+        } catch let e {
+            handleError(errorType: e)
         }
         
         return device
@@ -166,19 +164,61 @@ class AudioController {
     
     public func handleResult(result: OSStatus) throws {
         if result != kAudioHardwareNoError {
+            NSLog("Error occurred in AudioController. RC: " + String(result))
+            
             switch(result) {
             case kAudioHardwareBadDeviceError:
                 throw AudioControllerError.AudioHardwareBadDevice
+            case kAudioHardwareNotRunningError:
+                throw AudioControllerError.AudioHardwareNotRunning
+            case kAudioHardwareUnspecifiedError:
+                throw AudioControllerError.AudioHardwareUnspecifiedError
+            case kAudioHardwareUnknownPropertyError:
+                throw AudioControllerError.AudioHardwareUnknownProperty
+            case kAudioHardwareBadPropertySizeError:
+                throw AudioControllerError.AudioHardwareBadPropertySize
+            case kAudioHardwareIllegalOperationError:
+                throw AudioControllerError.AudioHardwareIllegalOperation
+            case kAudioHardwareBadObjectError:
+                throw AudioControllerError.AudioHardwareBadObject
+            case kAudioHardwareBadStreamError:
+                throw AudioControllerError.AudioHardwareBadStream
+            case kAudioHardwareUnsupportedOperationError:
+                throw AudioControllerError.AudioHardwareUnsupportedOperation
+            case kAudioDeviceUnsupportedFormatError:
+                throw AudioControllerError.AudioDeviceUnsupportedFormat
+            case kAudioDevicePermissionsError:
+                throw AudioControllerError.AudioDevicePermissionsError
             default:
                 throw AudioControllerError.AudioControllerUnknownError
             }
         }
     }
-    
+
     public func handleError(errorType: Error) {
         switch(errorType) {
         case AudioControllerError.AudioHardwareBadDevice:
             NSLog("AudioController: Bad Device")
+        case AudioControllerError.AudioHardwareNotRunning:
+            NSLog("AudioController: Audio Hardware Not Running")
+        case AudioControllerError.AudioHardwareUnspecifiedError:
+            NSLog("AudioController: Unspecified Error")
+        case AudioControllerError.AudioHardwareBadPropertySize:
+            NSLog("AudioController: Bad Property Size")
+        case AudioControllerError.AudioHardwareIllegalOperation:
+            NSLog("AudioController: Illegal Operation")
+        case AudioControllerError.AudioHardwareBadObject:
+            NSLog("AudioController: Bad Object")
+        case AudioControllerError.AudioHardwareBadStream:
+            NSLog("AudioController: Bad Stream")
+        case AudioControllerError.AudioHardwareUnsupportedOperation:
+            NSLog("AudioController: Unsupported Operation")
+        case AudioControllerError.AudioDeviceUnsupportedFormat:
+            NSLog("AudioController: Unsupported Format")
+        case AudioControllerError.AudioDevicePermissionsError:
+            NSLog("AudioController: Audio Device Permissions Error")
+        case AudioControllerError.AudioHardwareUnknownProperty:
+            NSLog("AudioController: Unknown Property")
         case AudioControllerError.AudioControllerUnknownError:
             NSLog("AudioController: Unknown Error Occurred")
         default:
