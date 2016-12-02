@@ -38,7 +38,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    public let deviceInUseSomewhereCallback: AudioDeviceListenerCallback = { (device: UInt32, numOfAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>, data: UnsafeMutableRawPointer?) -> Int32 in
+    public let deviceInUseSomewhereCallback: AudioDeviceListenerCallback = {
+        (device: UInt32, numOfAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>, data: UnsafeMutableRawPointer?) -> Int32 in
         
         var audioController = AudioController()
         let appDelegate = AppDelegate.getDelegate()
@@ -75,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSApplication.shared().delegate as! AppDelegate
     }
     
-    public func changeMicStatus(isMicOn: Bool, deviceName: String = "") {
+    func changeMicStatus(isMicOn: Bool, deviceName: String = "") {
         if isMicOn {
             statusBarItem.image = micOnImage
             micStatusMenuItem.title = "Mic Status: On"

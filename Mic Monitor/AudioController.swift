@@ -162,7 +162,7 @@ class AudioController {
         return device
     }
     
-    public func handleResult(result: OSStatus) throws {
+    func handleResult(result: OSStatus) throws {
         if result != kAudioHardwareNoError {
             NSLog("Error occurred in AudioController. RC: " + String(result))
             
@@ -195,7 +195,7 @@ class AudioController {
         }
     }
 
-    public func handleError(errorType: Error) {
+    func handleError(errorType: Error) {
         switch(errorType) {
         case AudioControllerError.AudioHardwareBadDevice:
             NSLog("AudioController: Bad Device")
