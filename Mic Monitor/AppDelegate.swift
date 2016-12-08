@@ -14,18 +14,15 @@ import AudioToolbox
 class AppDelegate: NSObject, NSApplicationDelegate {
     var statusBar = NSStatusBar.system()
     var statusBarItem : NSStatusItem = NSStatusItem()
-    var itemMenu : NSMenu = NSMenu()
-    var quitMenuItem : NSMenuItem = NSMenuItem(title: "Exit Mic Monitor", action: #selector(AppDelegate.quitApplication), keyEquivalent: "")
-    var micStatusMenuItem : NSMenuItem = NSMenuItem(title: "Mic Status: Off", action: nil, keyEquivalent: "")
-    var deviceListMenuItem : NSMenuItem = NSMenuItem(title: "Device: (None)", action: nil, keyEquivalent: "")
     var micOnImage = NSImage(named: "mic_on")
     var micOffImage = NSImage(named: "mic_off")
     var audioController = AudioController()
+    let itemMenu : NSMenu = NSMenu()
+    var activeDevices: [AudioDeviceID] = []
+    
     typealias AudioDeviceListenerCallback = @convention(c) (UInt32, UInt32, UnsafePointer<AudioObjectPropertyAddress>, UnsafeMutableRawPointer?) -> Int32
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        buildStatusItemMenu()
-
         statusBarItem = statusBar.statusItem(withLength: NSSquareStatusItemLength)
         statusBarItem.menu = itemMenu
         statusBarItem.image = micOffImage
@@ -34,8 +31,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let devices = audioController.getAudioInputDevices()
         
         for device in devices {
+            if audioController.isAudioDeviceInUseSomewhere(device: device) {
+                statusBarItem.image = micOnImage
+                activeDevices.append(device)
+            }
+            
             audioController.addAudioDeviceInUseSomewhereListener(device: device, proc: deviceInUseSomewhereCallback)
         }
+        
+        buildStatusItemMenu()
     }
     
     public let deviceInUseSomewhereCallback: AudioDeviceListenerCallback = {
@@ -46,10 +50,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         if audioController.isAudioDeviceInUseSomewhere(device: device) {
             NSLog("Device " + audioController.getAudioDeviceName(device: device) + " is in use!")
-            appDelegate.changeMicStatus(isMicOn: true, deviceName: audioController.getAudioDeviceName(device: device))
+            appDelegate.changeMicStatus(isMicOn: true, device: device)
         } else {
             NSLog("Device " + audioController.getAudioDeviceName(device: device) + " is NOT in use!")
-            appDelegate.changeMicStatus(isMicOn: false)
+            appDelegate.changeMicStatus(isMicOn: false, device: device)
         }
         
         return 0
@@ -60,11 +64,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
  
     func buildStatusItemMenu() {
-        let separator = NSMenuItem.separator()
+        itemMenu.removeAllItems()
+        
+        let micStatusMenuItem : NSMenuItem = NSMenuItem(title: "Mic Status: Off", action: nil, keyEquivalent: "")
+        let deviceListMenuItem : NSMenuItem = NSMenuItem(title: "Input Devices:", action: nil, keyEquivalent: "")
+        let quitMenuItem: NSMenuItem = NSMenuItem(title: "Exit Mic Monitor", action: #selector(AppDelegate.quitApplication), keyEquivalent: "")
+        let activeDeviceListMenuItem: NSMenuItem = NSMenuItem(title: "Active Devices:", action: nil, keyEquivalent: "")
+        let devices = audioController.getAudioInputDevices()
+        let deviceMenuItems = getDeviceMenuItems(devices: devices)
+        var activeDeviceMenuItems: [NSMenuItem] = []
+        
+        if activeDevices.count != 0 {
+            micStatusMenuItem.title = "Mic Status: On"
+            activeDeviceMenuItems = getDeviceMenuItems(devices: activeDevices)
+        } else {
+            micStatusMenuItem.title = "Mic Status: Off"
+
+            let noActiveDeviceMenuItem: NSMenuItem = NSMenuItem(title: "(none)", action: nil, keyEquivalent: "")
+            noActiveDeviceMenuItem.indentationLevel = 1
+            
+            activeDeviceMenuItems.append(noActiveDeviceMenuItem)
+        }
         
         itemMenu.addItem(micStatusMenuItem)
+        itemMenu.addItem(NSMenuItem.separator())
+        itemMenu.addItem(activeDeviceListMenuItem)
+        
+        for menuItem in activeDeviceMenuItems  {
+            itemMenu.addItem(menuItem)
+        }
+        
+        itemMenu.addItem(NSMenuItem.separator())
         itemMenu.addItem(deviceListMenuItem)
-        itemMenu.addItem(separator)
+        
+        for menuItem in deviceMenuItems  {
+            itemMenu.addItem(menuItem)
+        }
+        
+        itemMenu.addItem(NSMenuItem.separator())
         itemMenu.addItem(quitMenuItem)
     }
     
@@ -76,15 +113,29 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSApplication.shared().delegate as! AppDelegate
     }
     
-    func changeMicStatus(isMicOn: Bool, deviceName: String = "") {
+    func getDeviceMenuItems(devices: [AudioDeviceID]) -> [NSMenuItem] {
+        var menuItems: [NSMenuItem] = []
+        
+        for device in devices {
+            let menuItem = NSMenuItem(title: audioController.getAudioDeviceName(device: device), action: nil, keyEquivalent: "")
+            
+            menuItem.indentationLevel = 1
+            menuItems.append(menuItem)
+        }
+        
+        return menuItems
+    }
+    
+    func changeMicStatus(isMicOn: Bool, device: AudioDeviceID) {
         if isMicOn {
             statusBarItem.image = micOnImage
-            micStatusMenuItem.title = "Mic Status: On"
-            deviceListMenuItem.title = "Device: " + deviceName
+            activeDevices.append(device)
+            buildStatusItemMenu()
         } else {
             statusBarItem.image = micOffImage
-            micStatusMenuItem.title = "Mic Status: Off"
-            deviceListMenuItem.title = "Device: (None)"
+            
+            activeDevices = activeDevices.filter{$0 != device}
+            buildStatusItemMenu()
         }
     }
 }
