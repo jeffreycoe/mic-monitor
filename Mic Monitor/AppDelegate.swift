@@ -128,14 +128,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func changeMicStatus(isMicOn: Bool, device: AudioDeviceID) {
         if isMicOn {
-            statusBarItem.image = micOnImage
             activeDevices.append(device)
             buildStatusItemMenu()
         } else {
-            statusBarItem.image = micOffImage
-            
             activeDevices = activeDevices.filter{$0 != device}
             buildStatusItemMenu()
+        }
+        
+        if activeDevices.count != 0 {
+            statusBarItem.image = micOnImage
+        } else {
+            statusBarItem.image = micOffImage
         }
     }
 }
