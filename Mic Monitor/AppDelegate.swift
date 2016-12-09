@@ -19,6 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var audioController = AudioController()
     let itemMenu : NSMenu = NSMenu()
     var activeDevices: [AudioDeviceID] = []
+    var inputDevices: [AudioDeviceID] = []
     
     typealias AudioDeviceListenerCallback = @convention(c) (UInt32, UInt32, UnsafePointer<AudioObjectPropertyAddress>, UnsafeMutableRawPointer?) -> Int32
 
@@ -28,15 +29,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusBarItem.image = micOffImage
         statusBarItem.highlightMode = true
         
-        let devices = audioController.getAudioInputDevices()
+        audioController.addAudioHardwareDeviceNotificationListener(callback: deviceNotificationCallback)
+        inputDevices = audioController.getAudioInputDevices()
         
-        for device in devices {
+        for device in inputDevices {
             if audioController.isAudioDeviceInUseSomewhere(device: device) {
                 statusBarItem.image = micOnImage
                 activeDevices.append(device)
             }
             
-            audioController.addAudioDeviceInUseSomewhereListener(device: device, proc: deviceInUseSomewhereCallback)
+            audioController.addAudioDeviceInUseSomewhereListener(device: device, callback: deviceInUseSomewhereCallback)
         }
         
         buildStatusItemMenu()
@@ -59,6 +61,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return 0
     }
 
+    public let deviceNotificationCallback: AudioDeviceListenerCallback = {
+        (device: UInt32, numOfAddresses: UInt32, addresses: UnsafePointer<AudioObjectPropertyAddress>, data: UnsafeMutableRawPointer?) -> Int32 in
+        
+        var audioController = AudioController()
+        let appDelegate = AppDelegate.getDelegate()
+        
+        appDelegate.buildStatusItemMenu()
+        
+        for device in audioController.getAudioInputDevices() {
+            if !appDelegate.inputDevices.contains(device) {
+                audioController.addAudioDeviceInUseSomewhereListener(device: device, callback: appDelegate.deviceInUseSomewhereCallback)
+            }
+        }
+        
+        appDelegate.inputDevices = audioController.getAudioInputDevices()
+        
+        return 0
+    }
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         
     }
