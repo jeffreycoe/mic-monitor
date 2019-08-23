@@ -12,7 +12,7 @@ import AudioToolbox
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    var statusBar = NSStatusBar.system()
+    var statusBar = NSStatusBar.system
     var statusBarItem : NSStatusItem = NSStatusItem()
     var micOnImage = NSImage(named: "mic_on")
     var micOffImage = NSImage(named: "mic_off")
@@ -24,7 +24,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     typealias AudioDeviceListenerCallback = @convention(c) (UInt32, UInt32, UnsafePointer<AudioObjectPropertyAddress>, UnsafeMutableRawPointer?) -> Int32
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusBarItem = statusBar.statusItem(withLength: NSSquareStatusItemLength)
+        statusBarItem = statusBar.statusItem(withLength: NSStatusItem.squareLength)
         statusBarItem.menu = itemMenu
         statusBarItem.image = micOffImage
         statusBarItem.highlightMode = true
@@ -126,12 +126,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         itemMenu.addItem(quitMenuItem)
     }
     
-    func quitApplication() {
-        NSApplication.shared().terminate(self)
+    @objc func quitApplication() {
+        NSApplication.shared.terminate(self)
     }
     
     class func getDelegate() -> AppDelegate {
-        return NSApplication.shared().delegate as! AppDelegate
+        return NSApplication.shared.delegate as! AppDelegate
     }
     
     func getDeviceMenuItems(devices: [AudioDeviceID]) -> [NSMenuItem] {
